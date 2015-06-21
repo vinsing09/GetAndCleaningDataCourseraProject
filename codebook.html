@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>General Description</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>General Description</h1>
+
+<p>As part of the coursera getting and cleaning course project work, a tidydata.txt is made from the UCI HAR dataset. This codebook explains the data in the final output file tidydata.txt</p>
+
+<p>The code run_analysis.R creates a the data in required form from the original data retrieved from the url: <a href="http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#">http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones#</a></p>
+
+<p>The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data.</p>
+
+<p>The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.</p>
+
+<p>The original dataset comprises six activity performed by thirty subjects giving 561 measurements in total. The script takes the subset of all the variables with names o mean and std and then arranges the data taking average for each subject and each activity, thus having total of 180 observations. final tidy data has 81 variables out of which two are subject and activity, the remaining are the average of variables form original dataset that has mean or std mentioned. Apart form this, the script also cleans the variable renames from the original dataset to have better representation (explained subsequently).</p>
+
+<h1>Varibales Description</h1>
+
+<h2>Subject_id</h2>
+
+<p>This consists of numeric values form 1 to 30 representing the particular subject who performed the exepriments.</p>
+
+<h2>Activity_labels</h2>
+
+<p>The activity labels are the six types of activities performed by the subjects:</p>
+
+<ul>
+<li>WALKING</li>
+<li>WALKING_UPSTAIRS</li>
+<li>WALKING_DOWNSTAIRS</li>
+<li>SITTING</li>
+<li>STANDING</li>
+<li>LAYING</li>
+</ul>
+
+<h2>Measurements</h2>
+
+<p>The names of the measurement for which mean is calculated.</p>
+
+<pre><code>##  [1] &quot;subject_id&quot;                                        
+##  [2] &quot;activity_labels&quot;                                   
+##  [3] &quot;TimeSeriesBodyAcc_mean_X&quot;                          
+##  [4] &quot;TimeSeriesBodyAcc_mean_Y&quot;                          
+##  [5] &quot;TimeSeriesBodyAcc_mean_Z&quot;                          
+##  [6] &quot;TimeSeriesBodyAcc_std_X&quot;                           
+##  [7] &quot;TimeSeriesBodyAcc_std_Y&quot;                           
+##  [8] &quot;TimeSeriesBodyAcc_std_Z&quot;                           
+##  [9] &quot;TimeSeriesGravityAcc_mean_X&quot;                       
+## [10] &quot;TimeSeriesGravityAcc_mean_Y&quot;                       
+## [11] &quot;TimeSeriesGravityAcc_mean_Z&quot;                       
+## [12] &quot;TimeSeriesGravityAcc_std_X&quot;                        
+## [13] &quot;TimeSeriesGravityAcc_std_Y&quot;                        
+## [14] &quot;TimeSeriesGravityAcc_std_Z&quot;                        
+## [15] &quot;TimeSeriesBodyAccJerk_mean_X&quot;                      
+## [16] &quot;TimeSeriesBodyAccJerk_mean_Y&quot;                      
+## [17] &quot;TimeSeriesBodyAccJerk_mean_Z&quot;                      
+## [18] &quot;TimeSeriesBodyAccJerk_std_X&quot;                       
+## [19] &quot;TimeSeriesBodyAccJerk_std_Y&quot;                       
+## [20] &quot;TimeSeriesBodyAccJerk_std_Z&quot;                       
+## [21] &quot;TimeSeriesBodyGyro_mean_X&quot;                         
+## [22] &quot;TimeSeriesBodyGyro_mean_Y&quot;                         
+## [23] &quot;TimeSeriesBodyGyro_mean_Z&quot;                         
+## [24] &quot;TimeSeriesBodyGyro_std_X&quot;                          
+## [25] &quot;TimeSeriesBodyGyro_std_Y&quot;                          
+## [26] &quot;TimeSeriesBodyGyro_std_Z&quot;                          
+## [27] &quot;TimeSeriesBodyGyroJerk_mean_X&quot;                     
+## [28] &quot;TimeSeriesBodyGyroJerk_mean_Y&quot;                     
+## [29] &quot;TimeSeriesBodyGyroJerk_mean_Z&quot;                     
+## [30] &quot;TimeSeriesBodyGyroJerk_std_X&quot;                      
+## [31] &quot;TimeSeriesBodyGyroJerk_std_Y&quot;                      
+## [32] &quot;TimeSeriesBodyGyroJerk_std_Z&quot;                      
+## [33] &quot;TimeSeriesBodyAccMagnitude_mean&quot;                   
+## [34] &quot;TimeSeriesBodyAccMagnitude_std&quot;                    
+## [35] &quot;TimeSeriesGravityAccMagnitude_mean&quot;                
+## [36] &quot;TimeSeriesGravityAccMagnitude_std&quot;                 
+## [37] &quot;TimeSeriesBodyAccJerkMagnitude_mean&quot;               
+## [38] &quot;TimeSeriesBodyAccJerkMagnitude_std&quot;                
+## [39] &quot;TimeSeriesBodyGyroMagnitude_mean&quot;                  
+## [40] &quot;TimeSeriesBodyGyroMagnitude_std&quot;                   
+## [41] &quot;TimeSeriesBodyGyroJerkMagnitude_mean&quot;              
+## [42] &quot;TimeSeriesBodyGyroJerkMagnitude_std&quot;               
+## [43] &quot;FrequencySeriesBodyAcc_mean_X&quot;                     
+## [44] &quot;FrequencySeriesBodyAcc_mean_Y&quot;                     
+## [45] &quot;FrequencySeriesBodyAcc_mean_Z&quot;                     
+## [46] &quot;FrequencySeriesBodyAcc_std_X&quot;                      
+## [47] &quot;FrequencySeriesBodyAcc_std_Y&quot;                      
+## [48] &quot;FrequencySeriesBodyAcc_std_Z&quot;                      
+## [49] &quot;FrequencySeriesBodyAcc_meanFreq_X&quot;                 
+## [50] &quot;FrequencySeriesBodyAcc_meanFreq_Y&quot;                 
+## [51] &quot;FrequencySeriesBodyAcc_meanFreq_Z&quot;                 
+## [52] &quot;FrequencySeriesBodyAccJerk_mean_X&quot;                 
+## [53] &quot;FrequencySeriesBodyAccJerk_mean_Y&quot;                 
+## [54] &quot;FrequencySeriesBodyAccJerk_mean_Z&quot;                 
+## [55] &quot;FrequencySeriesBodyAccJerk_std_X&quot;                  
+## [56] &quot;FrequencySeriesBodyAccJerk_std_Y&quot;                  
+## [57] &quot;FrequencySeriesBodyAccJerk_std_Z&quot;                  
+## [58] &quot;FrequencySeriesBodyAccJerk_meanFreq_X&quot;             
+## [59] &quot;FrequencySeriesBodyAccJerk_meanFreq_Y&quot;             
+## [60] &quot;FrequencySeriesBodyAccJerk_meanFreq_Z&quot;             
+## [61] &quot;FrequencySeriesBodyGyro_mean_X&quot;                    
+## [62] &quot;FrequencySeriesBodyGyro_mean_Y&quot;                    
+## [63] &quot;FrequencySeriesBodyGyro_mean_Z&quot;                    
+## [64] &quot;FrequencySeriesBodyGyro_std_X&quot;                     
+## [65] &quot;FrequencySeriesBodyGyro_std_Y&quot;                     
+## [66] &quot;FrequencySeriesBodyGyro_std_Z&quot;                     
+## [67] &quot;FrequencySeriesBodyGyro_meanFreq_X&quot;                
+## [68] &quot;FrequencySeriesBodyGyro_meanFreq_Y&quot;                
+## [69] &quot;FrequencySeriesBodyGyro_meanFreq_Z&quot;                
+## [70] &quot;FrequencySeriesBodyAccMagnitude_mean&quot;              
+## [71] &quot;FrequencySeriesBodyAccMagnitude_std&quot;               
+## [72] &quot;FrequencySeriesBodyAccMagnitude_meanFreq&quot;          
+## [73] &quot;FrequencySeriesBody_BodyAccJerkMagnitude_mean&quot;     
+## [74] &quot;FrequencySeriesBody_BodyAccJerkMagnitude_std&quot;      
+## [75] &quot;FrequencySeriesBody_BodyAccJerkMagnitude_meanFreq&quot; 
+## [76] &quot;FrequencySeriesBody_BodyGyroMagnitude_mean&quot;        
+## [77] &quot;FrequencySeriesBody_BodyGyroMagnitude_std&quot;         
+## [78] &quot;FrequencySeriesBody_BodyGyroMagnitude_meanFreq&quot;    
+## [79] &quot;FrequencySeriesBody_BodyGyroJerkMagnitude_mean&quot;    
+## [80] &quot;FrequencySeriesBody_BodyGyroJerkMagnitude_std&quot;     
+## [81] &quot;FrequencySeriesBody_BodyGyroJerkMagnitude_meanFreq&quot;
+</code></pre>
+
+<h3>Measruement names difference from the original data set</h3>
+
+<p>-t and f denote the time series and frequency series.
+-Mag was confusing as it could also be understood as magnetometer, so changed to magnitude
+-Some elements have BodyBody, this is for the additional vecotrs for the angles.
+-this is changed to body_body</p>
+
+</body>
+
+</html>
